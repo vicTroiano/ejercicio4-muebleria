@@ -1,0 +1,67 @@
+@startuml
+class Transaccion {
+- Cliente cliente
+- Vendedor vendedor
+- ArrayList<ObjetoVendible> vendibles
++ <<Create>> Transaccion(Cliente,Vendedor)
++ void agregarVendible(ObjetoVendible)
++ Cliente getCliente()
++ void setCliente(Cliente)
++ Vendedor getVendedor()
++ void setVendedor(Vendedor)
++ ArrayList<ObjetoVendible> getVendibles()
++ void setVendibles(ArrayList<ObjetoVendible>)
+}
+class ObjetoVendible {
+- String nombre
+- double precioLista
+- Reserva reserva
+- Compra compra
++ <<Create>> ObjetoVendible(String,double)
++ String getNombre()
++ void setNombre(String)
++ double getPrecioLista()
++ void setPrecioLista(double)
++ Reserva getReserva()
++ void setReserva(Reserva)
++ Compra getCompra()
++ void setCompra(Compra)
+}
+class Reserva {
++ <<Create>> Reserva(Cliente,Vendedor,ObjetoVendible)
++ void agregarReserva(ObjetoVendible)
+}
+class Vendedor {
+- String nombre
+- ArrayList<ObjetoVendible> objetoVendibles
++ <<Create>> Vendedor(String)
++ String getNombre()
++ void setNombre(String)
++ ArrayList<ObjetoVendible> getObjetoVendibles()
++ void setObjetoVendibles(ArrayList<ObjetoVendible>)
+}
+class Compra {
+- double precioFinal
++ <<Create>> Compra(Cliente,Vendedor)
++ void agregarAlCarrito(ObjetoVendible)
++ void generarTicket(String,int,int)
++ double getPrecioFinal()
++ void setPrecioFinal(double)
+}
+class Main {
++ {static} void main(String[])
+}
+class Cliente {
+- String nombre
+- ArrayList<ObjetoVendible> objetoVendibles
++ <<Create>> Cliente(String)
++ String getNombre()
++ void setNombre(String)
++ ArrayList<ObjetoVendible> getObjetoVendibles()
++ void setObjetoVendibles(ArrayList<ObjetoVendible>)
+}
+
+
+Transaccion <|-- Reserva
+Transaccion <|-- Compra
+@enduml
